@@ -5,13 +5,15 @@ typedef RouteBuilder = Widget Function(BuildContext context, Object? data);
 abstract class RouteGenerator {
   const RouteGenerator();
 
-  Widget onDefault(BuildContext context, Object? data);
-
-  Widget onError(BuildContext context, Object? data);
-
   Map<String, RouteBuilder> attach();
 
-  Route<T> _route<T>(String? name, Object? data) {
+  Widget onDefault(BuildContext context, Object? data);
+
+  Widget onError(BuildContext context, Object? data) => const ErrorScreen();
+
+  Route<T> generate<T>(RouteSettings settings) {
+    var name = settings.name;
+    var data = settings.arguments;
     var mRoutes = attach();
     var isValidRoute = mRoutes.isNotEmpty;
     if (isValidRoute) {
@@ -31,19 +33,4 @@ abstract class RouteGenerator {
       );
     }
   }
-
-  Route<T> generate<T>(RouteSettings settings) {
-    return RouteGeneratorImpl()._route(settings.name, settings.arguments);
-  }
-}
-
-class RouteGeneratorImpl extends RouteGenerator {
-  @override
-  Map<String, RouteBuilder> attach() => {};
-
-  @override
-  Widget onDefault(BuildContext context, Object? data) => const Scaffold();
-
-  @override
-  Widget onError(BuildContext context, Object? data) => const ErrorScreen();
 }
