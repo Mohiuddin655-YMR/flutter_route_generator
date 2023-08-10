@@ -1,0 +1,19 @@
+name: flutter_route_generator
+description: This is a route generator library.
+version: 0.0.1
+homepage: https://github.com/P-YMR/flutter_route_generator.git
+
+environment:
+  sdk: '>=3.0.1 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
